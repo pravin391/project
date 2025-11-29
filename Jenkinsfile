@@ -1,9 +1,8 @@
-
 pipeline {
-agent any
+    agent any
 
     tools {
-         // Use Maven tool configured in Jenkins Global Tool Configuration
+        // Use Maven tool configured in Jenkins Global Tool Configuration
         maven 'apache-maven-3.9.11'
     }
 
@@ -42,6 +41,26 @@ agent any
                 sh '''
                     # Copy modified WAR to Tomcat webapps
                     cp target/LoginWebApp.war /mnt/servers/apache-tomcat-10.1.49/webapps/
+                '''
+            }
+        }
+
+        stage('Initialize Database') {
+            steps {
+                sh '''
+                    mysql -h database-1.c3igs6uku453.ap-south-1.rds.amazonaws.com \
+                          -u admin -ppravin12345 your_db_name <<EOF
+                    CREATE TABLE IF NOT EXISTS USER (
+                      id int(10) unsigned NOT NULL auto_increment,
+                      first_name varchar(45) NOT NULL,
+                      last_name varchar(45) NOT NULL,
+                      email varchar(45) NOT NULL,
+                      username varchar(45) NOT NULL,
+                      password varchar(45) NOT NULL,
+                      regdate date NOT NULL,
+                      PRIMARY KEY  (id)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+                    EOF
                 '''
             }
         }
