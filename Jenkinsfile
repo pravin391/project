@@ -3,7 +3,7 @@ pipeline {
 agent any
 
     tools {
-         # Use Maven tool configured in Jenkins Global Tool Configuration
+         // Use Maven tool configured in Jenkins Global Tool Configuration
         maven 'apache-maven-3.9.11'
     }
 
