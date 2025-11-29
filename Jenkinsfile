@@ -49,7 +49,7 @@ pipeline {
             steps {
                 sh '''
                     mysql -h database-1.c3igs6uku453.ap-south-1.rds.amazonaws.com \
-                          -u admin -ppravin12345 your_db_name <<EOF
+                          -u admin -p pravin12345 test <<EOF
                     CREATE TABLE IF NOT EXISTS USER (
                       id int(10) unsigned NOT NULL auto_increment,
                       first_name varchar(45) NOT NULL,
