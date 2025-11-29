@@ -50,8 +50,8 @@ pipeline {
         sh '''
             mysql -h database-1.c3igs6uku453.ap-south-1.rds.amazonaws.com \
                   -u admin -ppravin12345 <<EOF
-CREATE DATABASE IF NOT EXISTS pravin;
-USE pravin;
+CREATE DATABASE IF NOT EXISTS test;
+USE test;
 CREATE TABLE IF NOT EXISTS USER (
   id int(10) unsigned NOT NULL auto_increment,
   first_name varchar(45) NOT NULL,
